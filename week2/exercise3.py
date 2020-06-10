@@ -40,11 +40,10 @@ def loops_1a():
     return a list of 10 items, each one a string with exacly one star in it.
     E.g.: ['*', '*', '*', '*', '*', '*', '*', '*', '*', '*']
     """
-    star ='*'
-    for shine in star:
-        ans = list(range(10))
-        print (star)
-    return ans
+    stars = []
+    for shine in range(10):
+        stars.append('*')
+    return stars
 
 
 def loops_1c(number_of_items=5, symbol="#"):
@@ -54,7 +53,10 @@ def loops_1c(number_of_items=5, symbol="#"):
     string with exacly one symbol in it.
     E.g.: ['#', '#', '#', '#', '#']
     """
-    return None
+    hashbrown = []
+    for i in range(number_of_items):
+        hashbrown.append(symbol)
+    return hashbrown
 
 
 def loops_2():
@@ -75,7 +77,13 @@ def loops_2():
             ['*', '*', '*', '*', '*', '*', '*', '*', '*', '*'],
           ]
     """
-    return None
+    stars = []
+    starfield = []
+    for bling in range(0,10):
+        stars.append('*')
+    for blingbling in range (0,10):
+        starfield.append(stars)
+    return starfield
 
 
 def loops_3():
@@ -99,8 +107,11 @@ def loops_3():
     TIP: notice that this needs to to return strings of numbers,
          so call str(number) to cast.
     """
-    return None
-
+    list = []
+    for i in range (10):
+        x = [str(i)*10]
+        list.append(x)
+    return list
 
 def loops_4():
     """Make a block of numbers that rises left to right.
@@ -119,7 +130,11 @@ def loops_4():
       ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']
     ]
     """
-    return None
+    list = []
+    for i in range (10):
+        list.append(i)
+    lists = ([list]*10)
+    return lists
 
 
 def loops_5():
@@ -146,7 +161,11 @@ def loops_5():
         "There are {} green bottles".format(8)
     you'll come to see the pros and cons of each over time.
     """
-    return None
+    #concatination
+    coord = []
+    for rows in range(10):
+        for columns in range(5):
+            coord.append("i"+str(i)')",j    return None
 
 
 def loops_6():
