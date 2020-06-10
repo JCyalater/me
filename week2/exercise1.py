@@ -11,18 +11,22 @@ import platform
 # I think this will print "hello! Let's get started" by calling the print function.
 print("hello! Let's get started")  # it printed "hello! Let's get started"
 
-some_words = ['what', 'does', 'this', 'line', 'do', '?']
+# assign strings in a list to the variable some_words 
+some_words = ['what', 'does', 'this', 'line', 'do', '?'] # assign strings in a list to the variable some_words 
 
+# loops through some_words and prints each string
 for word in some_words:
-    print(word)
-
+    print(word) # loops through some_words and prints each string
+# loops through some_words and prints each string
 for x in some_words:
-    print(x)
+    print(x) # loops through some_words and prints each string
 
-print(some_words)
+# Print results
+print(some_words) # Print for loops above
 
+# If length of vairable is greater than 3, print all strings with more than 3 characters
 if len(some_words) > 3:
-    print('some_words contains more than 3 words')
+    print('some_words contains more than 3 words') # Print 'some_words contains more than 3 words' if length of some words are longer than 3
 
 def usefulFunction():
     """
