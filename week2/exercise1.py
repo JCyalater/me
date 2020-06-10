@@ -26,7 +26,7 @@ print(some_words) # Print for loops above
 
 # If length of vairable is greater than 3, print all strings with more than 3 characters
 if len(some_words) > 3:
-    print('some_words contains more than 3 words') # Print 'some_words contains more than 3 words' if length of some words are longer than 3
+    print('some_words contains more than 3 words') # Print 'some_words contains more than 3 words' if length of some words are greater than 3
 
 def usefulFunction():
     """
