@@ -26,7 +26,7 @@ def fix_it(moves=True, should_move=True):
     Most people write this function with 4 return statements. 
     As an extra challenge, see if you can get that down to three.
     """
-    if (moves == False and should_move == False):
+    if (moves == False and should_move == True):
         return "WD-40"
     elif (moves == True and should_move == False):
         return "Duct Tape"
@@ -109,8 +109,8 @@ def loops_3():
     """
     list = []
     for i in range (10):
-        x = [str(i)*10]
-        list.append(x)
+        x = str(i)
+        list.append([x]*10)
     return list
 
 def loops_4():
@@ -130,10 +130,12 @@ def loops_4():
       ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']
     ]
     """
-    list = []
+    lists = []
     for i in range (10):
-        list.append(i)
-    lists = ([list]*10)
+        list = []
+        for j in range(10):
+            list.append(j)
+        lists.append(list)
     return lists
 
 
@@ -162,20 +164,20 @@ def loops_5():
     you'll come to see the pros and cons of each over time.
     """
 #concatination  
-    coord_rows = []
-    for i in range(10):
-        for j in range(5):
-            coord_rows.append("(i"+str(i) + ", j" + str(j) + ")")
-        coord_rows = [coord_rows[x:x+5] for x in range(0,len(coord_rows),5)]
-    return coord_rows
+#    coord_rows = []
+#    for i in range(10):
+#        for j in range(5):
+#            coord_rows.append("(i"+str(i) + ", j" + str(j) + ")")
+#        coord_cols = [coord_rows[x:x+5] for x in range(0,len(coord_rows),5)]
+#    return coord_cols
 
 #using format
     coord_rows = []
     for i in range(10):
         for j in range(5):
             coord_rows.append("(i{}, j{})".format(i,j))
-        coord_rows = [coord_rows[x:x+5] for x in range(0,len(coord_rows),5)]
-    return coord_rows   
+        coord_cols= [coord_rows[x:x+5] for x in range(0,len(coord_rows),5)]
+    return coord_cols 
 
 def loops_6():
     """Make a wedge of numbers.
