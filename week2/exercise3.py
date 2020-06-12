@@ -161,12 +161,21 @@ def loops_5():
         "There are {} green bottles".format(8)
     you'll come to see the pros and cons of each over time.
     """
-    #concatination
-    coord = []
-    for rows in range(10):
-        for columns in range(5):
-            coord.append("i"+str(i)')",j    return None
+#concatination  
+    coord_rows = []
+    for i in range(10):
+        for j in range(5):
+            coord_rows.append("(i"+str(i) + ", j" + str(j) + ")")
+        coord_rows = [coord_rows[x:x+5] for x in range(0,len(coord_rows),5)]
+    return coord_rows
 
+#using format
+    coord_rows = []
+    for i in range(10):
+        for j in range(5):
+            coord_rows.append("(i{}, j{})".format(i,j))
+        coord_rows = [coord_rows[x:x+5] for x in range(0,len(coord_rows),5)]
+    return coord_rows   
 
 def loops_6():
     """Make a wedge of numbers.
@@ -188,7 +197,13 @@ def loops_6():
     You can use a variable.
     TIP: look out for the starting condition.
     """
-    return None
+    column = []
+    for i in range (10):
+        row = []
+        for j in range(i+1):
+            row.append(j)
+        column.append(row)
+    return column
 
 
 def loops_7():
@@ -212,7 +227,15 @@ def loops_7():
     This is a hard problem. Use lots of experimentation and draw
     lots of diagrams!
     """
-    return None
+    star_tree = []
+    for i in range(0,5):
+        left_branch = 4 - i
+        right_branch = 5 + i
+        star_tree.append([' ']*9)
+       
+        for j in range( left_branch, right_branch):
+            star_tree[i][j] = "*"
+    return star_tree
 
 
 def lp(some_kind_of_list, exercise_name):
