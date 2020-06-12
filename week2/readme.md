@@ -1,6 +1,6 @@
-TODO: Reflect on what you learned this week and what is still unclear.
+~TODO: Reflect on what you learned this week and what is still unclear.~
 
-~Week 2 Lab~
+---Week 2 Lab---
 This week was much more challenging than last week, learning python involves more googling than what I had initially thought. 
     - Exercise0 focused on basic functions involving strings and integers
     - Exercise1 focused on interpreting what each line of code means
