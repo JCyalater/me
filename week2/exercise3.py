@@ -130,11 +130,11 @@ def loops_4():
       ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']
     ]
     """
-    lists = []
+    list = []
     for i in range (10):
-        list = []
-        for j in range(10):
-            list.append(j)
+        list.append(str(i))
+    lists =[]
+    for j in range(10):
         lists.append(list)
     return lists
 
@@ -199,14 +199,12 @@ def loops_6():
     You can use a variable.
     TIP: look out for the starting condition.
     """
-    column = []
-    for i in range (10):
-        row = []
-        for j in range(i+1):
-            row.append(j)
-        column.append(row)
-    return column
+    step = list(map(str,list(range(10))))
+    wedge = []
+    for x in range(1,11):
+        wedge.append(step[0:x])
 
+    return wedge
 
 def loops_7():
     """Make a pyramid.
