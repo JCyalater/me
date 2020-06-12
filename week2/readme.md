@@ -2,10 +2,12 @@
 
 ---Week 2 Lab---
 This week was much more challenging than last week, learning python involves more googling than what I had initially thought. 
+
     - Exercise0 focused on basic functions involving strings and integers
     - Exercise1 focused on interpreting what each line of code means
     - Exercise2 focused on correcting invalid syntaxes and also the use of the list function
     - Exercise3 focused on using python to complete basic tasks which included the use of:
+	
         - Basic functions and patterns
         - Lists
         - Appending
