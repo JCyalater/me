@@ -25,7 +25,11 @@ def lone_ranger(start, stop, step):
 
     Look up the docs for range() and wrap it in a 1:1 way
     """
-    return lone_ranger(start, stop, step)
+    lone_ranger = []
+    while start < stop:
+        lone_ranger.append(start)
+        start = start + step
+    return lone_ranger
 
 
 def two_step_ranger(start, stop):
@@ -34,7 +38,11 @@ def two_step_ranger(start, stop):
     Sometimes you want to hide complexity.
     Make a range function that always has a step size of 2
     """
-    return two_step_ranger(start, stop, 2)
+    two_step_ranger = []
+    while start < stop:
+        two_step_ranger.append(start)
+        start = start + 2
+    return two_step_ranger
 
 def stubborn_asker(low, high):
     """Ask for a number between low and high until actually given one.
@@ -48,13 +56,12 @@ def stubborn_asker(low, high):
     # ask for a number
     # if its good return it
 
-    print("what is your number pl0x?")
-    x = input()
-    while x < low and x > high:
-        print ("try agian pl0x!")
-
-    print ("done")
-    return x  
+    while True:
+        InputVal = int(input("Chuck us a number:\n "))
+        if InputVal < low or InputVal> high:
+            print("Chuck us another:\n ")
+        else:
+            return InputVal
     
 
 def not_number_rejector(message):
@@ -64,7 +71,17 @@ def not_number_rejector(message):
     (e.g. "cow", "six", "8!") then throw it out and ask for an actual number.
     When you do get a number, return it.
     """
-    return None
+    # print(enter a number)
+    # x = input()
+
+    # return None
+    while True:
+        try: 
+            InputVal = int(input(message))
+            print("hah! goteem!")
+            return InputVal
+        except Exception:
+            print("chuck us another", Exception)
 
 
 def super_asker(low, high):
@@ -75,7 +92,13 @@ def super_asker(low, high):
     Try to call at least one of the other functions to minimise the
     amount of code.
     """
-    return None
+    super_asker = input("Number Pls! ")
+    try: 
+        value = int(super_asker) 
+        value > low and value < high
+    except ValueError: 
+        print("no cigar!")
+    return super_asker
 
 
 if __name__ == "__main__":
