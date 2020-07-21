@@ -1,4 +1,5 @@
 """All about IO."""
+#python ../course/week4/tests.py
 
 
 import json
@@ -77,8 +78,23 @@ def wordy_pyramid():
     ]
     TIP: to add an argument to a URL, use: ?argName=argVal e.g. &minLength=
     """
-    pass
+    pyramid = []
+    url = "https://us-central1-waldenpondpress.cloudfunctions.net/give_me_a_word?wordlength={len}"
+    
+    iterateList = []
+    for i in range(3, 21, 2):
+        iterateList.append(i)
+    iterateList.append(20)
+    for i in range(18, 2, -2):
+        iterateList.append(i)
 
+    # up to 20 & find words of increasing length
+    for i in iterateList:
+        wordNo = url.format(len = i)
+        search = requests.get(wordNo)
+        stringy = search.text
+        pyramid.append(stringy)
+    return pyramid
 
 def pokedex(low=1, high=5):
     """ Return the name, height and weight of the tallest pokemon in the range low to high.
