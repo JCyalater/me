@@ -2,9 +2,19 @@
 
 Steps on the way to making your own guessing game.
 """
+#python ../course/week3/tests.py
 
 import random
 
+def numChecker(message):
+    actual_number = True
+    while not actual_number:
+        guess = input(message)
+        if guess.isdigit():
+            actual_number = True 
+            return int(guess)
+        else: 
+            print("Not a number"
 
 def advancedGuessingGame():
     """Play a guessing game with a user.
@@ -25,71 +35,25 @@ def advancedGuessingGame():
     Remember to think modular. Try to keep your functions small and single
     purpose if you can!
     """
-#     print("\nWelcome to the guessing game!")
-    print("A number between _ and _ ?")
-    
-    lowerBound = input("Enter a lower bound: ")
-    
-    valueGuess = False
-
-    while valueGuess == False:
-      upperBound = input("Enter an upper bound: ")
-      try:
-        int(upperBound)
-        valueGuess = True
-      except ValueError:
-        print("A Number pls!")
-      if lowerBound < upperBound:
-        valueGuess = True
-      else:
-        print("Try a higher bound")
-
-    print("OK then, a number between {} and {} ?".format(lowerBound, upperBound))
-    upperBound = int(upperBound)
-    lowerBound = int(lowerBound)
+    print("\nWelcome to the guessing game!")
+    upperBound = int(numChecker("Enter an upper bound: "))
+    lowerBound = int(numChecker("Enter a lower bound: "))
+    print("OK then, a number between {} and {} ?".format(lowerBound,upperBound))
 
     actualNumber = random.randint(lowerBound, upperBound)
 
     guessed = False
 
     while not guessed:
-        guessedNumber = int(input("Guess a number: "))
-        try:
-          lowerBound < guessedNumber < upperBound
-        except ValueError:
-          guessedNumber = int(input("Not a legit number innit mate"))
-        except TypeError:
-          guessedNumber = int(input("Not a legit number innit mate"))
-        print("You guessed {},".format(int(guessedNumber)),)
-        
-  if int(guessedNumber) == actualNumber:
-              print("You got it!! It was {}".format(actualNumber))
-              guessed = True
-          elif int(guessedNumber) < actualNumber:
-              print("Too small, like my respect for you")
-          else:
-              print("Too big, like my expectations of you :'(")
-      return "You got it!"
-    # the tests are looking for the exact string "You got it!". Don't modify that!
-
-
-
-
-
-
-def not_number_rejector(message):
-  
-    number_5 = False
-
-    while number_5 == False:
-        ask = str(input(message)) #pick a number
-        if ask.isdigit():
-            return int(ask)
+        guessedNumber = numChecker("Guess a number: ")
+        print("You guessed {},".format(guessedNumber),)
+        if guessedNumber == actualNumber:
+            print("You got it!! It was {}".format(actualNumber))
+            guessed = True
+        elif guessedNumber < actualNumber:
+            print("Too small, try again :'(")
         else:
-            print ("Try again, that's not a number")
+            print("Too big, try again :'(")
+    return "You got it!"
 
-
-
-
-if __name__ == "__main__":
-    print(advancedGuessingGame())
+    #python ../course/week3/tests.py
