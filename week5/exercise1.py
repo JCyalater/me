@@ -182,10 +182,10 @@ def triangle_master(base, height, return_diagram=False, return_dictionary=False)
 
 def wordy_pyramid():
     import requests
-    wordy_pyramid = []
+    pyr = []
     lengths = list(range(3,21,2) + range(20,3,-2))
-    wordy_pyramid.extend(list_of_words_with_lengths(lengths))
-    return wordy_pyramid
+    pyr.extend(list_of_words_with_lengths(lengths))
+    return pyr
         # baseURL = (
     #     "http://api.wordnik.com/v4/words.json/randomWords?"
     #     "api_key={api_key}"
