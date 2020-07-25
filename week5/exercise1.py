@@ -1,4 +1,5 @@
 # -*- coding: UTF-8 -*-
+#python ../course/week5/tests.py 
 """Refactoring.
 
 This exercise contains a complete and working example, but it's very poorly written.
@@ -49,7 +50,10 @@ def do_bunch_of_bad_things():
 # return a list of countdown messages, much like in the bad function above.
 # It should say something different in the last message.
 def countdown(message, start, stop, completion_message):
-    pass
+    while stop <= start:
+        print(message + " " +str(start))
+        start = start -1
+    print(completion_message)
 
 
 # TRIANGLES
@@ -61,33 +65,44 @@ def countdown(message, start, stop, completion_message):
 # turned off by default but turned on with an optional argument.
 # The stub functions are made for you, and each one is tested, so this should
 # hand hold quite nicely.
+#python ../course/week5/tests.py
 def calculate_hypotenuse(base, height):
-    pass
+    hypotenuse = pow((pow(base,2) + pow(height,2)),0.5)
+    # hypotenuse = (base**2 + height**2)**(1/2)
+    return hypotenuse
 
 
 def calculate_area(base, height):
-    pass
+    area = (base*height)/2
+    return area
 
 
 def calculate_perimeter(base, height):
-    pass
+    hypotenuse = calculate_hypotenuse(base,height)
+    perimeter = base + height + hypotenuse
+    return perimeter
 
 
 def calculate_aspect(base, height):
-    pass
-
+    if height == base:
+        aspect = "equal"
+    elif base > height:
+        aspect = "wide"
+    else:
+        aspect ="tall"
+    return aspect
 
 # Make sure you reuse the functions you've already got
 # Don't reinvent the wheel
 def get_triangle_facts(base, height, units="mm"):
     return {
-        "area": None,
-        "perimeter": None,
-        "height": None,
-        "base": None,
-        "hypotenuse": None,
-        "aspect": None,
-        "units": None,
+        "area": calculate_area(base, height),
+        "perimeter": calculate_perimeter(base, height),
+        "height": height,
+        "base": base,
+        "hypotenuse": calculate_hypotenuse( base, height),
+        "aspect": calculate_aspect( base, height),
+        "units": units,
     }
 
 
@@ -137,59 +152,86 @@ def tell_me_about_this_right_triangle(facts_dictionary):
         "It has a perimeter of {perimeter}{units}\n"
         "This is a {aspect} triangle.\n"
     )
-
+    if facts_dictionary["aspect"] == "tall":
+        diagram = tall.format(**facts_dictionary) #unpack facts_dictionary
+    elif facts_dictionary["aspect"] == "wide":
+        diagram = wide.format(**facts_dictionary)
+    else:
+        diagram = equal.format(**facts_dictionary)
     facts = pattern.format(**facts_dictionary)
+    return( diagram + "\n" + facts)
 
 
 def triangle_master(base, height, return_diagram=False, return_dictionary=False):
+
+    dictionary = get_triangle_facts(base, height)
+    diagram = tell_me_about_this_right_triangle(dictionary)
     if return_diagram and return_dictionary:
-        return None
+        print(dictionary)
+        print(diagram)
+        return {"diagram": diagram, "dictionary": dictionary}
     elif return_diagram:
-        return None
+        print(diagram)
+        return diagram
     elif return_dictionary:
-        return None
+        print(dictionary)
+        return dictionary
     else:
         print("You're an odd one, you don't want anything!")
 
 
-def wordy_pyramid(api_key):
+def wordy_pyramid():
     import requests
-
-    baseURL = (
-        "http://api.wordnik.com/v4/words.json/randomWords?"
-        "api_key={api_key}"
-        "&minLength={length}"
-        "&maxLength={length}"
-        "&limit=1"
-    )
-    pyramid_list = []
-    for i in range(3, 21, 2):
-        url = baseURL.format(api_key="", length=i)
-        r = requests.get(url)
-        if r.status_code is 200:
-            message = r.json()[0]["word"]
-            pyramid_list.append(message)
-        else:
-            print("failed a request", r.status_code, i)
-    for i in range(20, 3, -2):
-        url = baseURL.format(api_key="", length=i)
-        r = requests.get(url)
-        if r.status_code is 200:
-            message = r.json()[0]["word"]
-            pyramid_list.append(message)
-        else:
-            print("failed a request", r.status_code, i)
-    return pyramid_list
+    wordy_pyramid = []
+    lengths = list(range(3,21,2) + range(20,3,-2))
+    wordy_pyramid.extend(list_of_words_with_lengths(lengths))
+    return wordy_pyramid
+        # baseURL = (
+    #     "http://api.wordnik.com/v4/words.json/randomWords?"
+    #     "api_key={api_key}"
+    #     "&minLength={length}"
+    #     "&maxLength={length}"
+    #     "&limit=1"
+    # )
+    # pyramid_list = []
+    # for i in range(3, 21, 2):
+    #     url = baseURL.format(api_key="", length=i)
+    #     r = requests.get(url)
+    #     if r.status_code is 200:
+    #         message = r.json()[0]["word"]
+    #         pyramid_list.append(message)
+    #     else:
+    #         print("failed a request", r.status_code, i)
+    # for i in range(20, 3, -2):
+    #     url = baseURL.format(api_key="", length=i)
+    #     r = requests.get(url)
+    #     if r.status_code is 200:
+    #         message = r.json()[0]["word"]
+    #         pyramid_list.append(message)
+    #     else:
+    #         print("failed a request", r.status_code, i)
+    # return pyramid_list
 
 
 def get_a_word_of_length_n(length):
-    pass
+    import requests
+
+    url = "https://us-central1-waldenpondpress.cloudfunctions.net/give_me_a_word?wordlength={wordlength}"
+    q = url.format(wordlength = str(length))
+    r = requests.get(q)
+    if r.status_code is 200:
+        yah = r.content
+        return yah
 
 
 def list_of_words_with_lengths(list_of_lengths):
-    pass
+    noPyr = []
+    for i in list_of_lengths:
+        noPyr.append(get_a_word_of_length_n(i))
+        return noPyr
 
-
+#python ../course/week5/tests.py
 if __name__ == "__main__":
-    do_bunch_of_bad_things()
-    wordy_pyramid("a2a73e7b926c924fad7001ca3111acd55af2ffabf50eb4ae5")
+    # do_bunch_of_bad_things()
+    # wordy_pyramid("a2a73e7b926c924fad7001ca3111acd55af2ffabf50eb4ae5") #needs to be rewritten?
+    print(wordy_pyramid)
