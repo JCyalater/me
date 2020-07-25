@@ -80,7 +80,8 @@ def wordy_pyramid():
     """
     pyramid = []
     url = "https://us-central1-waldenpondpress.cloudfunctions.net/give_me_a_word?wordlength={len}"
-    
+
+  #to count up and then down  
     iterateList = []
     for i in range(3, 21, 2):
         iterateList.append(i)
@@ -88,7 +89,7 @@ def wordy_pyramid():
     for i in range(18, 2, -2):
         iterateList.append(i)
 
-    # up to 20 & find words of increasing length
+# search words of spec. len and convert words from url to python text.
     for i in iterateList:
         wordNo = url.format(len = i)
         search = requests.get(wordNo)
@@ -111,13 +112,23 @@ def pokedex(low=1, high=5):
          variable and then future access will be easier.
     """
     template = "https://pokeapi.co/api/v2/pokemon/{id}"
+    goodBoi = 0
 
-    url = template.format(id=5)
-    r = requests.get(url)
-    if r.status_code is 200:
-        the_json = json.loads(r.text)
-    return {"name": None, "weight": None, "height": None}
+    for i in range (low, high):
+        url = template.format(id=i) 
+        r = requests.get(url) #makes request to webpage
+        if r.status_code is 200: #if status code is OK
+            the_json = json.loads(r.text) # decode JSON into python with .loads
+            tallBoi = the_json["height"]
+            if tallBoi > goodBoi:
+                goodBoi = tallBoi
+                pokename = the_json["name"]
+                pokeweight = the_json["weight"]
+                pokeheight = the_json["height"]
+          
+    return {"name": pokename, "weight": pokeweight, "height": pokeheight}
 
+#python ../course/week4/tests.py
 
 def diarist():
     """Read gcode and find facts about it.
@@ -134,6 +145,18 @@ def diarist():
     TIP: this might come in handy if you need to hack a 3d print file in the future.
     """
     pass
+    
+    geddit = LOCAL + "/Trispokedovtiles(laser).gcode"
+    no = 0
+    # count shots
+    laserPewPew = open(geddit).readklines()
+    for shots in laserPewPew:
+        if "M10 p1" in shots:
+            no += 1
+    #write to file
+    pewDir = open("lasers.pew","w")
+    pewDir.write(str(no))
+    pewDir.close()
 
 
 if __name__ == "__main__":
