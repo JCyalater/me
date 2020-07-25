@@ -126,7 +126,8 @@ def pokedex(low=1, high=5):
                 pokeweight = the_json["weight"]
                 pokeheight = the_json["height"]
           
-    return {"name": pokename, "weight": pokeweight, "height": pokeheight}
+    pokedex = {"name": pokename, "weight": pokeweight, "height": pokeheight}
+    return pokedex
 
 #python ../course/week4/tests.py
 
@@ -149,7 +150,7 @@ def diarist():
     geddit = LOCAL + "/Trispokedovtiles(laser).gcode"
     no = 0
     # count shots
-    laserPewPew = open(geddit).readklines()
+    laserPewPew = open(geddit)
     for shots in laserPewPew:
         if "M10 p1" in shots:
             no += 1
