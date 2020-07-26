@@ -109,10 +109,11 @@ def abba(source="abba", guard=3):
             return letter
 
     # write the rest of the function here
-    letter = list(source)
-    new_letter_list = list(map(apply_rules,letter))
-    new_word = "".join(new_letter_list)
-    guard -= 1
+    newLetter = list(source)
+    # mammaMia = list(map(apply_rules,letter))
+    mammaMia =[apply_rules(letter, guard) for letter in newLetter]
+    new_word = "".join(mammaMia)
+    guard -= 1 # Subtracts the value of an expression from the value of a variable or property and assigns the result to the variable or property
     
     if guard > 0:
         return abba(new_word,guard)
@@ -165,15 +166,15 @@ def square_koch(t, order, size):
     if order == 0:  
         t.forward(size)
     else:
-        trace += koch(t, order-1, size/3)   # Go 1/3 of the way
+        trace += square_koch(t, order-1, size/3)   # Go 1/3 of the way
         t.left(90)
-        trace += koch(t, order-1, size/3)
+        trace += square_koch(t, order-1, size/3)
         t.right(90)
-        trace += koch(t, order-1, size/3)
+        trace += square_koch(t, order-1, size/3)
         t.right(90)
-        trace += koch(t, order-1, size/3)
+        trace += square_koch(t, order-1, size/3)
         t.left(90)
-        trace += koch(t, order-1, size/3)
+        trace += square_koch(t, order-1, size/3)
     return str(order) + trace
 
 #python ../course/week5/tests.py

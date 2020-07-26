@@ -38,4 +38,10 @@ was replace with the map
     # pyrMap =map(get_a_word_of_length_n, list_of_lengths)
     # return pyrMap
 
-The tests for exercise 2, do not seem to update unless I fix everything in exercise 1 first, which is quite inconvenient.
+The tests in exercise 2 was much easier to understand by following the examples.
+Only big issue I encountered was changing
+>mammaMia = list(map(apply_rules,letter))
+to
+>mammaMia =[apply_rules(letter, guard) for letter in newLetter]
+From the properties of the function, by using a for function, we can loop "letter" from "newLetter" which was not the case in the earlier code.
+Also, by removing the list and map functions, it can attach to the new_word as a string rather than as a list.
