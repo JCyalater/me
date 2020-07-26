@@ -15,10 +15,27 @@ Used knowledge from week4 to import random word generator and convert to python 
 >unsupported operand type(s) for +: 'range' and 'range'
 As range doesn't return a list on python 3, I have place a list bracket over the range functions, but it is to no avail.
 
-    Update:
+Update:
 > lengths = list(range(3,21,2) + range(20,3,-2))
 was changed to 
 > lengths=[3, 5, 7, 9, 11, 13, 15, 17, 19, 20, 18, 16, 14, 12, 10, 8, 6, 4]
 with a new error saying: "wordy_pyramid is broken can't concat str to bytes"... still unsure of a way to fix this
+
+Update 2:
+message was fixed by changing 
+> r.content 
+to 
+>r.text
+.content outputs in bytes while .text outputs in unicode
+
+Also, in list_of_words_with_lengths
+    # noPyr = []
+    # for i in list_of_lengths:
+    #     noPyr.append(get_a_word_of_length_n(i))
+    #     return noPyr
+
+was replace with the map
+    # pyrMap =map(get_a_word_of_length_n, list_of_lengths)
+    # return pyrMap
 
 The tests for exercise 2, do not seem to update unless I fix everything in exercise 1 first, which is quite inconvenient.

@@ -1,3 +1,4 @@
+import requests
 # -*- coding: UTF-8 -*-
 #python ../course/week5/tests.py 
 """Refactoring.
@@ -181,57 +182,63 @@ def triangle_master(base, height, return_diagram=False, return_dictionary=False)
 
 
 def wordy_pyramid():
-    import requests
     pyr = []
-    lengths = list(range(3,21,2) + range(20,3,-2))
-    pyr.extend(list_of_words_with_lengths(lengths))
+    iterateList = []
+    for i in range(3, 21, 2):
+        iterateList.append(i)
+    for i in range(20, 2, -2):
+        iterateList.append(i)
+    pyr.extend(list_of_words_with_lengths(iterateList))
     return pyr
-        # baseURL = (
-    #     "http://api.wordnik.com/v4/words.json/randomWords?"
-    #     "api_key={api_key}"
-    #     "&minLength={length}"
-    #     "&maxLength={length}"
-    #     "&limit=1"
+
+    # baseURL = (
+    #     "https://us-central1-waldenpondpress.cloudfunctions.net/"
+    #     "give_me_a_word?wordlength={length}"
     # )
     # pyramid_list = []
     # for i in range(3, 21, 2):
-    #     url = baseURL.format(api_key="", length=i)
+    #     url = baseURL.format(length=i)
     #     r = requests.get(url)
     #     if r.status_code is 200:
-    #         message = r.json()[0]["word"]
+    #         message = r.text
     #         pyramid_list.append(message)
     #     else:
     #         print("failed a request", r.status_code, i)
     # for i in range(20, 3, -2):
-    #     url = baseURL.format(api_key="", length=i)
+    #     url = baseURL.format(length=i)
     #     r = requests.get(url)
     #     if r.status_code is 200:
-    #         message = r.json()[0]["word"]
+    #         message = r.text
     #         pyramid_list.append(message)
     #     else:
     #         print("failed a request", r.status_code, i)
+
     # return pyramid_list
 
 
 def get_a_word_of_length_n(length):
-    import requests
+    
 
-    url = "https://us-central1-waldenpondpress.cloudfunctions.net/give_me_a_word?wordlength={wordlength}"
-    q = url.format(wordlength = str(length))
+    url = "https://us-central1-waldenpondpress.cloudfunctions.net/give_me_a_word?wordlength={}"
+    q = url.format(length)
     r = requests.get(q)
     if r.status_code is 200:
-        yah = r.content
-        return yah
+        wordString = r.text
+        print(wordString)
+        return wordString
 
 
 def list_of_words_with_lengths(list_of_lengths):
-    noPyr = []
-    for i in list_of_lengths:
-        noPyr.append(get_a_word_of_length_n(i))
-        return noPyr
+    pyrMap =map(get_a_word_of_length_n, list_of_lengths)
+    return pyrMap
+
+    # noPyr = []
+    # for i in list_of_lengths:
+    #     noPyr.append(get_a_word_of_length_n(i))
+    #     return noPyr
 
 #python ../course/week5/tests.py
 if __name__ == "__main__":
-    # do_bunch_of_bad_things()
-    # wordy_pyramid("a2a73e7b926c924fad7001ca3111acd55af2ffabf50eb4ae5") #needs to be rewritten?
-    print(wordy_pyramid)
+    do_bunch_of_bad_things()
+    wordy_pyramid()
+    #("a2a73e7b926c924fad7001ca3111acd55af2ffabf50eb4ae5") 
