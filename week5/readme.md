@@ -44,4 +44,4 @@ Only big issue I encountered was changing
 to
 >mammaMia =[apply_rules(letter, guard) for letter in newLetter]
 From the properties of the function, by using a for function, we can loop "letter" from "newLetter" which was not the case in the earlier code.
-Also, by removing the list and map functions, it can attach to the new_word as a string rather than as a list.
+Also, by removing the list and map functions, it is better optimised for the newer version of python, even though both lines should technically be viable.
